@@ -16,14 +16,26 @@
 
 <style>
     .wrapper {
-        background-color: #f7f5eb;
+        background-image: url('/1sedona.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: brightness(1.1) contrast (1.2);
+        /* Existing styles */
         padding: min(100vh, 30rem) 1rem;
         border-style: solid;
-        border-color: #4096fa;
+        border-color: #523c4e;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
+    }
+    .wrapper::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.2); /* subtle darkoverlay */
+        z-index: 0;
     }
 
     .left .scrolly {
@@ -45,6 +57,8 @@
         display: flex;
         flex-direction: column;
         flex: 1 1; /* Allows growing, shrinking */
+        position: relative;
+        z-index: 1;
     }
 
     .sticky {
