@@ -26,7 +26,7 @@ https://data.commercialappeal.com/american-community-survey/yavapai-county-arizo
 
 The blurry overlay effect is coming from the .wrapper class in src/lib/Scroller.svelte. It sets a background image and applies a filter:
 Apply to Scroller.sve...
-}
+
 Why you see a blurry/filtered overlay:
 Every Scroller component adds its own background image (with a filter) on top of your main page background. This is why, when you scroll between sections, you see a clear image (the body background), but inside sections, you see a filtered/overlaid version.
 How to fix:

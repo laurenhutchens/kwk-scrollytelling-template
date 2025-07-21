@@ -96,7 +96,7 @@
     {/snippet}
 
     {#snippet scrolly()}
-        <ArticleText>According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.</ArticleText>
+        <ArticleText>In 2023, the median home value for Black households in Yavapai County was approximately $403,400, notably higher than the national median for Black households, which stood at around $337,000. This suggests that while Yavapai County has a relatively small Black population, homeownership costs for Black residents in the area are significantly above national averages.</ArticleText>
         <ArticleText>In 2023, there were an estimated 194,585 Black or African American-owned businesses with paid employees across the United States, according to the U.S. Census Bureau. In Yavapai County, only about 1,500 Black-owned businesses were reported that year, reflecting a significant disparity compared to the national landscape.</ArticleText>
         <ArticleText>In 2023, the Black population made up approximately 13.7% of the total U.S. population. During the same year, in Yavapai County, Arizona, Black residents represented just 1% of the population, compared to the national average—highlighting a stark demographic contrast. </ArticleText>
     {/snippet}

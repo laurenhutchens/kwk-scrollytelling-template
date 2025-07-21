@@ -82,8 +82,7 @@
             </button>
             <div>
                 <p>
-                    You can use Svelte to add and remove data from a Highcharts
-                    chart.
+                    According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.
                 </p>
                 <p>
                     When you click the button above, a third group is toggled in
