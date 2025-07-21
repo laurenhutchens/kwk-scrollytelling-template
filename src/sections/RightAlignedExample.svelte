@@ -6,16 +6,26 @@
     import ArticleText from "../lib/ArticleText.svelte";
 
     // Reusable chart options function
-    let chartOptions = (chartTitle, chartData) => /** @type {any} */ ({
+    let chartOptions = (chartType, chartTitle, chartData, categories=[]) => /** @type {any} */ ({
         chart: {
-            type: "pie",
+            type: chartType,
             spacing: [20, 20, 20, 20],
-            height: 260
+            height: 300
         },
+        colors: chartTitle === 'Business Formations' ? ['#9a6226', '#564154'] : ['#9a6226', '#564154'],
         title: { text: null },
-        plotOptions: {
+        xAxis: chartType === 'column' ? {
+            categories: categories,
+            crosshair: true
+        } : undefined,
+        yAxis: chartType === 'column' ? {
+            min: 0,
+            title: { text: null }
+        } : undefined,
+        plotOptions: chartType === 'pie' ? {
             pie: {
-                size: '200px',
+                size: '150px',
+                innerSize: chartTitle === 'Business Formations' ? '60%' : '0%', 
                 allowPointSelect: true,
                 dataLabels: {
                     enabled: true,
@@ -26,21 +36,35 @@
                     }
                 }
             }
+        } : {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
         },
         series: [{
-            type: "pie",
+            type: chartType,
             name: chartTitle,
             data: chartData
         }]
     });
 
     // Example data (replace with your actual data)
-    let chart1Data = [ { name: "A", y: 40 }, { name: "B", y: 60 } ];
-    let chart2Data = [ { name: "C", y: 30 }, { name: "D", y: 70 } ];
-    let chart3Data = [ { name: "E", y: 50 }, { name: "F", y: 50 } ];
-    let chart4Data = [ { name: "G", y: 25 }, { name: "H", y: 75 } ];
+    let chart1Categories = ["Yavapai County", "national"];
+    let chart1Data = [ 
+        { y: 403400, color: "#9a6226" },
+        { y: 337000, color: "#564154" }
+    ];
+    let chart2Data = [
+        { y: 1500, color: "#9a6226" },
+        { y: 194585, color: "#564154" }
+    ];
+    let chart3Data = [
+        { y: 1.2, color: "#9a6226" },
+        { y: 13.7, color: "#564154" }
+    ];
 </script>
-
+ 
 <Scroller layout="right">
     {#snippet sticky()}
         <div class="right-section-content">
@@ -57,40 +81,39 @@
             <div class="multi-chart">
                 <div class="chart-section">
                     <h3>MEDIAN HOME VALUE (2023)</h3>
-                    <Chart options={chartOptions("Median Home Value", chart1Data)} highcharts={Highcharts} />
+                    <Chart options={chartOptions("column", "Median Home Value", chart1Data, chart1Categories)} highcharts={Highcharts} />
                 </div>
                 <div class="chart-section">
-                    <h3>Median Income for Black Households (2023)</h3>
-                    <Chart options={chartOptions("Median Income", chart2Data)} highcharts={Highcharts} />
+                    <h3>NUMBER OF BUSINESS FORMATIONS (2023)</h3>
+                    <Chart options={chartOptions("pie", "Business Formations", chart2Data)} highcharts={Highcharts} />
                 </div>
                 <div class="chart-section">
-                    <h3>PPP Dollar Amount Received by Black Businesses per Black Capita (2020-2021)</h3>
-                    <Chart options={chartOptions("PPP Dollars", chart3Data)} highcharts={Highcharts} />
-                </div>
-                <div class="chart-section">
-                    <h3>Expected Annual Loss Per Capita Due to Natural Hazards (2022)</h3>
-                    <Chart options={chartOptions("Expected Loss", chart4Data)} highcharts={Highcharts} />
+                    <h3>BLACK POPULATION PERCENTAGE (2023)</h3>
+                    <Chart options={chartOptions("pie", "Population", chart3Data)} highcharts={Highcharts} />
                 </div>
             </div>
         </div>
     {/snippet}
 
     {#snippet scrolly()}
-        <ArticleText>Median home values have increased significantly in recent years...</ArticleText>
-        <ArticleText>Black households in Yavapai County earn median incomes below national averages...</ArticleText>
-        <ArticleText>PPP funding disparities highlight systemic inequities...</ArticleText>
-        <ArticleText>Natural hazard losses pose financial risks in marginalized communities...</ArticleText>
+        <ArticleText>According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.</ArticleText>
+        <ArticleText>In 2023, there were an estimated 194,585 Black or African American-owned businesses with paid employees across the United States, according to the U.S. Census Bureau. In Yavapai County, only about 1,500 Black-owned businesses were reported that year, reflecting a significant disparity compared to the national landscape.</ArticleText>
+        <ArticleText>In 2023, the Black population made up approximately 13.7% of the total U.S. population. During the same year, in Yavapai County, Arizona, Black residents represented just 1% of the population, compared to the national average—highlighting a stark demographic contrast. </ArticleText>
     {/snippet}
 </Scroller>
 
 <style>
 .right-section-content {
     border: 2px solid black;
-    background-color: transparent;
+    background-image: url('/public/sedonaYavapaiBackgroundImage.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent; /* or remove if not needed */
     padding: 2rem;
     max-width: 1000px;
     margin: 0 auto;
-    margin-top: 45rem;
+    margin-top: 55rem;
 }
 
 .section-title {

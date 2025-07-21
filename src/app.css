@@ -9,3 +9,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body {
+    background-image: url('/public/sedonaYavapaiBackgroundImage.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: keeps the image fixed during scroll */
+    background-color: transparent; /* Ensures no overlay */
+}

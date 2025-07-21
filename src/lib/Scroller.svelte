@@ -16,11 +16,11 @@
 
 <style>
     .wrapper {
-        background-image: url('/public/sedonaYavapaiBackgroundImage.jpg');
+        /* background-image: url('/sedonaYavapaiBackgroundImage.jpg'); */
         background-size: cover;
         background-position: center;
         background-repeat: repeat;
-        filter: brightness(1.1) contrast (1.2);
+        /* filter: brightness(1.1) contrast (1.2); */
         margin-top: 2rem;
         /* Existing styles */
         padding: min(100vh, 30rem) 1rem;
