@@ -10,15 +10,15 @@
   import IntersectionObserverListExample from "./sections/IntersectionObserverListExample.svelte";
 </script>
 
-<main>
-  <TitleSection />
+<TitleSection />
+
+<div class="scrolly-background">
   <RightAlignedExample />
   <LeftAlignedExample />
   <ImageExample />
-
   <IntersectionObserverSectionCard />
   <InteresectionObserverBasicExample />
   <IntersectionObserverAlertExample />
   <DisappearingDuckExample />
   <IntersectionObserverListExample />
-</main>
+</div>

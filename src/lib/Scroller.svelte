@@ -16,11 +16,12 @@
 
 <style>
     .wrapper {
-        background-image: url('/1sedona.png');
-        background-size: contain;
+        background-image: url('/public/sedonaYavapaiBackgroundImage.jpg');
+        background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat;
         filter: brightness(1.1) contrast (1.2);
+        margin-top: 2rem;
         /* Existing styles */
         padding: min(100vh, 30rem) 1rem;
         border-style: solid;
@@ -34,7 +35,6 @@
         content: '';
         position: absolute;
         inset: 0;
-        background-color: rgba(0, 0, 0, 0.2); /* subtle darkoverlay */
         z-index: 0;
     }
 
