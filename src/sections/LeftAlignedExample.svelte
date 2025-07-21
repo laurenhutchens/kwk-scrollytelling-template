@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import * as Highcharts from "highcharts";
     import "highcharts/modules/exporting";
     import { Chart } from "@highcharts/svelte";
@@ -80,6 +82,7 @@
             <button on:click={toggleThirdSeries} class="toggle-button">
                 {thirdSeriesVisible ? "Remove Group 3" : "Add Group 3"}
             </button>
+        {/snippet}
             <div>
                 <p>
                     According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.
@@ -96,7 +99,6 @@
                     >
                 </p>
             </div>
-        {/snippet}
 
         {#snippet scrolly()}
             <ArticleText>
