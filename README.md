@@ -36,3 +36,5 @@ yes
 
 The background image and filter have been removed from the .wrapper class in src/lib/Scroller.svelte. Now, your clear page background image (set on the body) will show through everywhere, including inside all scrollytelling sections.
 You should now see a consistent, clear background image across the entire page. If you want to further adjust the look, you can tweak the body background or the transparency of other elements as needed!
+
+Make sure <div class="multi-chart"> is directly inside <div class="right-section-content"> in your Svelte file.

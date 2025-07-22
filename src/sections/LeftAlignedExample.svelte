@@ -7,147 +7,107 @@
     import Scroller from "../lib/Scroller.svelte";
     import ArticleText from "../lib/ArticleText.svelte";
 
-    const series = [
-        {
-            name: "Group 1",
-            data: [
-                [1990, 3],
-                [2000, 4],
-                [2010, 1],
-                [2020, 1],
-            ],
-            color: "#8427c9",
-        },
-        {
-            name: "Group 2",
-            data: [
-                [1990, 2],
-                [2000, 5],
-                [2010, -2],
-                [2020, 2],
-            ],
-            color: "#ff99fc",
-        },
-        {
-            name: "Group 3",
-            data: [
-                [1990, 4],
-                [2000, 3],
-                [2010, 0],
-                [2020, 3],
-            ],
-            color: "#4096fa",
-        },
-    ];
-
-    let chart;
-    let thirdSeriesVisible = false;
+    // Chart data for Yavapai County and National
+    let chartCategories = ["Yavapai County (AZ)", "National"];
+    let chartData = [50700, 53400]; // $50.7K and $53.4K
 
     let options = {
         chart: {
-            type: "spline",
+            type: "column",
             backgroundColor: "#e3ff00",
             borderColor: "#007052",
             borderWidth: 5,
             borderRadius: 20,
         },
         title: {
-            text: "Another Example Chart",
+            text: "Median Income for Black Households (2023)",
         },
-        subtitle: {
-            text: "With a subtitle! And styling!",
+        xAxis: {
+            categories: chartCategories,
+            title: { text: null },
         },
-        series: [series[0], series[1]],
-    };
-
-    function toggleThirdSeries() {
-        const existingSeries = chart.series.find((s) => s.name === "Group 3");
-
-        if (existingSeries) {
-            existingSeries.remove();
-            thirdSeriesVisible = false;
-        } else {
-            chart.addSeries(series[2]);
-            thirdSeriesVisible = true;
+        yAxis: {
+            min: 0,
+            title: { text: "Income (USD)" },
+            labels: {
+                formatter: function() { return `$${(this.value/1000).toFixed(1)}K`; }
+            }
+        },
+        series: [{
+            name: "Median Income",
+            data: chartData,
+            colorByPoint: true,
+            colors: ["#9a6226", "#564154"]
+        }],
+        legend: { enabled: false },
+        tooltip: {
+            pointFormatter: function() {
+                return `<b>$${(this.y/1000).toFixed(1)}K</b>`;
+            }
         }
-    }
+    };
 </script>
 
-<div>
-    <Scroller layout="left">
-        {#snippet sticky()}
-            <div class="chart">
-                <Chart bind:chart {options} highcharts={Highcharts} />
-            </div>
-            <button on:click={toggleThirdSeries} class="toggle-button">
-                {thirdSeriesVisible ? "Remove Group 3" : "Add Group 3"}
-            </button>
-        {/snippet}
-            <div>
-                <p>
-                    According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.
-                </p>
-                <p>
-                    When you click the button above, a third group is toggled in
-                    the chart. Check out the source code to see how it's done.
-                </p>
-                <p>
-                    <strong
-                        >🤔 How might you use other HTML elements, like
-                        checkboxes or radio buttons, in a similar way to filter
-                        data?</strong
-                    >
-                </p>
-            </div>
-
-        {#snippet scrolly()}
-            <ArticleText>
-                You might notice that this basic template doesn't have certain
-                features that are common in scrollytelling.
-            </ArticleText>
-
-            <ArticleText>
-                For example, you might want a component that doesn't feature a
-                sticky component at all. Or a component that is solely a sticky
-                component.
-            </ArticleText>
-
-            <ArticleText>
-                You might also want to add more interactivity or gamify parts of
-                your scrollytelling piece.
-            </ArticleText>
-
-            <ArticleText>
-                <strong>
-                    It's up to you to research how to create the effects and
-                    functionality that you envision!
-                </strong>
-            </ArticleText>
-        {/snippet}
-    </Scroller>
-</div>
+<Scroller layout="left">
+  <div class="two-column">
+    <div class="left-section-content">
+      <div class="section-title">
+        MEDIAN INCOME (2023)
+      </div>
+      <div class="multi-chart">
+        <div class="chart-section">
+          <Chart {options} highcharts={Highcharts} />
+        </div>
+      </div>
+    </div>
+  </div>
+</Scroller>
 
 <style>
-    .chart {
-        width: 90%;
-        margin: 0px auto;
-    }
+.two-column {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+}
 
-    .toggle-button {
-        margin: 20px;
-        padding: 20px;
-        color: #007052;
-        background-color: #0bd956;
-        border: solid 2px #007052;
-        border-radius: 16px;
-        font-size: large;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 0 #007052;
-    }
+.left-section-content {
+  max-width: 500px;
+  flex: 0 0 500px;
+  padding: 2rem;
+  margin-top: -20rem; /* or adjust this value as needed */
+}
 
-    .toggle-button:active {
-        transform: translateY(2px);
-        box-shadow: 0 2px 0 #007052;
-    }
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.multi-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.chart-section {
+  width: 90%;
+  text-align: center;
+}
+
+.left-scroll {
+  flex: 1 1 0;
+  height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  max-width: none;
+  padding: 0 2rem;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
 </style>

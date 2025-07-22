@@ -68,6 +68,7 @@
 </script>
 
 <Scroller layout="right">
+  <div class="two-column">
     <div class="right-section-content">
         <div class="section-title">
             WEALTH INDICATORS FOR<br>
@@ -78,7 +79,6 @@
                 national
             </span>
         </div>
-
         <div class="multi-chart">
             <div class="chart-section">
                 <h3>MEDIAN HOME VALUE (2023)</h3>
@@ -95,23 +95,34 @@
         </div>
     </div>
 
-    <ArticleText>According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.</ArticleText>
-    <ArticleText>In 2023, there were an estimated 194,585 Black or African American-owned businesses with paid employees across the United States, according to the U.S. Census Bureau. In Yavapai County, only about 1,500 Black-owned businesses were reported that year, reflecting a significant disparity compared to the national landscape.</ArticleText>
-    <ArticleText>In 2023, the Black population made up approximately 13.7% of the total U.S. population. During the same year, in Yavapai County, Arizona, Black residents represented just 1% of the population, compared to the national average—highlighting a stark demographic contrast. </ArticleText>
+    <div class="right-scroll">
+        <ArticleText>According to recent data, the median household income for Black households in Yavapai County is $47,250. This represents a 5% decrease from previous estimates of $47,386, but remains 20.7% higher than earlier levels of $41,935, reflecting some longer-term gains despite recent declines.</ArticleText>
+        <ArticleText>In 2023, there were an estimated 194,585 Black or African American-owned businesses with paid employees across the United States, according to the U.S. Census Bureau. In Yavapai County, only about 1,500 Black-owned businesses were reported that year, reflecting a significant disparity compared to the national landscape.</ArticleText>
+        <ArticleText>In 2023, the Black population made up approximately 13.7% of the total U.S. population. During the same year, in Yavapai County, Arizona, Black residents represented just 1% of the population, compared to the national average—highlighting a stark demographic contrast. </ArticleText>
+    </div>
+  </div>
 </Scroller>
 
 <style>
+.two-column {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .right-section-content {
     border: 2px solid black;
-    background-image: url('/public/sedonaYavapaiBackgroundImage.jpg');
+    background-image: url('/sedonaYavapaiBackgroundImage.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent; /* or remove if not needed */
     padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-top: 55rem;
+    max-width: 500px; /* or whatever width you want for the chart section */
+    flex: 0 0 500px;
+    margin-top: -20rem;
 }
 
 .section-title {
@@ -149,5 +160,17 @@
 .chart-section h3 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+}
+
+.right-scroll {
+  flex: 1 1 0;
+  height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  max-width: none;
+  padding: 0 2rem; /* adjust as needed */
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 </style>

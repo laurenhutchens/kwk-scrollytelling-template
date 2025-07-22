@@ -8,4 +8,4 @@
         "poke around in the code to fully understand how they work!";
 </script>
 
-<TitleCard {title} {subtitle} />
+<!-- <TitleCard {title} {subtitle} /> -->
